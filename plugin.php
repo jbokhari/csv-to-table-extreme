@@ -4,8 +4,8 @@
  * Plugin URI: https://github.com/jbokhari/csv-to-table-extreme
  * Description: Uses Advanced Custom Fields file field called <code>csv_to_table</code> on a post (has to be made separate from the plugin). When a CSV is uploaded, the plugin will convert that file to a table and display where the shortcode <code>[csv_directory]</code> is present.
  * Version: The plugin's version number. 0.0.1
- * Author: Jameel Bokhari with Anchor Wave
- * Author URI: https://www.anchorwave.com/
+ * Author: Anchor Wave Internet Solutions
+ * Author URI: http://www.anchorwave.com/
  * License: GPL2
  */
 if ( !defined("ABSPATH") ){
@@ -25,7 +25,7 @@ class csvToTable {
 
     }
 
-    public function enqueue_scripts( $atts, $content = null ){
+    public function enqueue_scripts(){
 
         wp_enqueue_script( 'datatables', "//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js");
         wp_enqueue_script( 'datatables-colvis', "//cdnjs.cloudflare.com/ajax/libs/datatables-colvis/1.1.0/js/datatables.colvis.min.js", array( 'datatables') );
@@ -134,4 +134,11 @@ class csvToTable {
 }
 
 function init_csvToTable(){
-    if ( ! i
+    if ( ! is_admin() && function_exists("get_field") && $csv = get_field("csv_to_table") ){
+        $csvToTable = new csvToTable($csv);
+        add_shortcode( "csv_directory", array($csvToTable, "build_csv_directory") );
+        add_action( "wp_enqueue_scripts", array($csvToTable, "enqueue_scripts") );
+    }
+}
+
+add_action('get_header', "init_csvToTable" );
