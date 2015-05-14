@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: CSV to table (extreme edition)
- * Plugin URI: http://www.anchorwave.com/
+ * Plugin Name: CSV To Table Extreme
+ * Plugin URI: https://github.com/jbokhari/csv-to-table-extreme
  * Description: Uses Advanced Custom Fields file field called <code>csv_to_table</code> on a post (has to be made separate from the plugin). When a CSV is uploaded, the plugin will convert that file to a table and display where the shortcode <code>[csv_directory]</code> is present.
- * Version: The plugin's version number. 0.0.0
- * Author: Anchor Wave Internet Solutions
- * Author URI: http://www.anchorwave.com/
+ * Version: The plugin's version number. 0.0.1
+ * Author: Jameel Bokhari with Anchor Wave
+ * Author URI: https://www.anchorwave.com/
  * License: GPL2
  */
 if ( !defined("ABSPATH") ){
